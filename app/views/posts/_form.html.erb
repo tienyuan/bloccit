@@ -9,7 +9,7 @@
        </ul>
      </div>
    <% end %>
-  <%= f.input :title, required: false, error: false, error_html: { class: 'has-error' }, placeholder: "Enter post title" %>
+  <%= f.input :title, required: false, error: false, placeholder: "Enter post title" %>
   <%= f.input :body, as: :text, required: false, error: false, input_html: { rows: 8 }, placeholder: "Enter post body" %>
   <%= f.button :submit, "Save", class: "btn btn-success" %>
 <% end %>
