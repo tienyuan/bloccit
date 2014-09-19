@@ -1,11 +1,10 @@
 class CommentsController < ApplicationController
-  def new
-  end
 
   def create
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
-    @comment = current_user.comments.build(post_params)  # This line might be a problem?
+    @comment = current_user.comments.new(comment_params)  # This line might be a problem?  
+    @comment.post = @post
     if @comment.save
       flash[:notice] = "Comment saved sucessfully."
       redirect_to [@topic, @post]
@@ -15,15 +14,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
   private
 
-  def post_params
+  def comment_params
     params.require(:comment).permit(:body)
   end
 
