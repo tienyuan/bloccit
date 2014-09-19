@@ -21,3 +21,6 @@ bloccit.sublime-workspace
 
 # Ignore application configuration
 /config/application.yml
+
+#Ignore Carrierwave image
+/public/uploads
