@@ -1,0 +1,3 @@
+<% @post.comments.each do |comment| %>
+  <p><%= comment.body %> <em><%= comment.user.name %></em></p>
+<% end %>

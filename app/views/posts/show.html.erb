@@ -16,5 +16,13 @@
     <% end %>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+  <h2>Comments</h2>
+    <%= render partial: 'comments/comment', locals: { post: @post } %>
+  <h3>Add a comment:</h3>
+   <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @post.comments.build } %>
+  </div>
+</div>
 
 
