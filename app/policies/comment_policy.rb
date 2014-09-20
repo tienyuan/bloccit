@@ -4,6 +4,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present? && user.can_moderate?
+    user.present? && can_moderate?
   end
 end

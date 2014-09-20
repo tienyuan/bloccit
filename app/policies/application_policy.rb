@@ -54,8 +54,6 @@ class ApplicationPolicy
   private
 
   def can_moderate?(user, record)
-    @user = user
-    @record = record
     user == record.user || user.role?(:admin) || user.role?(:moderator)
   end
 end
