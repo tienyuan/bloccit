@@ -9,7 +9,7 @@ describe Vote do
     end
 
     describe "#allows 1" do
-      it "only allows -1" do
+      it "only allows 1" do
         expect( v.valid? ).to eq(true)
       end
     end
