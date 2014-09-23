@@ -50,5 +50,11 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+
+  def can_moderate?
+    user == record.user || user.role?(:admin) || user.role?(:moderator)
+  end
 end
 
