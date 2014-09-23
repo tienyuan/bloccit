@@ -1,27 +1,35 @@
 require 'rails_helper'
+include TestFactories
+include Devise::TestHelpers
 
 describe Vote do
+
   describe "validations" do
-    before do
-      @v = Vote.create(value: 1)
-      @v2 = Vote.create(value: 1)
-      @v3 = Vote.create(value: 2)
+
+    it "only allows 1" do
+      vote = Vote.new(value: 1)
+      expect( vote.valid? ).to eq(true)
     end
 
-    describe "#valid vote" do
-      it "only allows 1" do
-        expect( @v.valid? ).to eq(true)
-      end
+    it "only allows -1" do
+      vote = Vote.new(value: -1)
+      expect( vote.valid? ).to eq(true)
     end
-    describe "#valid vote #2" do
-      it "only allows -1" do
-        expect( @v2.valid? ).to eq(true)
-      end
-    end
-    describe "#invalid vote" do
-      it "doesn't allow 2" do
-        expect( @v3.valid? ).to eq(false)
+
+    it "doesn't allow 2" do
+      [-2, 0, 2].each do |invalid_value|
+        vote = Vote.new(value: invalid_value)
+        expect( vote.valid? ).to eq(false)
       end
     end    
+  end
+
+  describe "after save" do
+    it "calls `Post#update_rank` after save" do
+      post = associated_post
+      vote = Vote.new(value: 1, post: post)
+      expect(post).to receive(:update_rank)
+        vote.save
+    end
   end
 end
