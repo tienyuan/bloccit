@@ -2,10 +2,10 @@ class FavoritesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    favorite = current_user.favorites.build(post: @post)
+    @favorite = current_user.favorites.build(post: @post)
 
-    @authorize favorite
-    if favorite.save
+    authorize @favorite
+    if @favorite.save
       flash[:notice] = "Favorite saved sucessfully."
       redirect_to [@post.topic, @post]
     else
@@ -16,10 +16,10 @@ class FavoritesController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    favorite = current_user.favorites.find_by_post_id(@post.id)
+    @favorite = current_user.favorites.find_by_post_id(@post.id)
 
-    @authorize favorite
-    if favorite.destroy
+    authorize @favorite
+    if @favorite.destroy
       flash[:notice] = "Favorite deleted successfully."
       redirect_to [@post.topic, @post]
     else
@@ -27,4 +27,5 @@ class FavoritesController < ApplicationController
       redirect_to [@post.topic, @post]
     end
   end
+
 end

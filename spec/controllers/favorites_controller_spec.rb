@@ -17,7 +17,7 @@ describe FavoritesController do
 
       post :create, { post_id: @post.id }
 
-      expect (@user.favorites.find_by_post_id(@post.id).class ).to eq(Favorite)
+      expect(@user.favorites.find_by_post_id(@post.id).class ).to eq(Favorite)
     end
   end
 
@@ -28,7 +28,7 @@ describe FavoritesController do
 
       delete :destroy, { post_id: @post.id, id: favorite.id }
 
-      expect ( @user.favorites.find_by_post_id(@post.id) ).to eq(nil)
+      expect( @user.favorites.find_by_post_id(@post.id) ).to eq(nil)
     end
   end
 end
