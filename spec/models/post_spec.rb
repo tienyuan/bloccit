@@ -1,7 +1,9 @@
 require 'rails_helper'
-include TestFactories
 
 describe Post do 
+
+  include TestFactories
+
   describe "vote methods" do
     before do
       @post = associated_post
