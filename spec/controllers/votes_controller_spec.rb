@@ -4,7 +4,7 @@ describe VotesController do
 
   include TestFactories
 
-  describe '#up-_vote' do
+  describe '#up-vote' do
     it "adds an up-vote to the post" do
       request.env["HTTP_REFERER"] = "/"
       @user = authenticated_user
