@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '2.0.0'
 gem 'rails', '4.0.9'
+
 
 # Use sqlite3 as the database for Active Record
 group :production do
@@ -17,6 +19,7 @@ end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
+
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
@@ -63,6 +66,7 @@ gem 'will_paginate'
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
