@@ -9,7 +9,8 @@ describe Comment do
     before do
       @post = associated_post
       @user = authenticated_user
-      @comment = Comment.new(body: 'My comment', post: @post, user_id: 1000)
+      @commenter = authenticated_user
+      @comment = Comment.new(body: 'My comment', post: @post, user: @commenter)
     end
 
     context "with user's permission" do
