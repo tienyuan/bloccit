@@ -1,9 +1,18 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :user
   belongs_to :topic
   mount_uploader :image, ImageUploader
+
+  default_scope { order('rank DESC') }
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
+
+  validates :title, length: { minimum: 5 }, presence: true
+  validates :body, length: { minimum: 20 }, presence: true
+  validates :topic, presence: true
+  validates :user, presence: true
 
   def up_votes
     votes.where(value: 1).count
@@ -23,13 +32,6 @@ class Post < ActiveRecord::Base
 
     update_attribute(:rank, new_rank)
   end
-
-  default_scope { order('rank DESC') }
-
-  validates :title, length: { minimum: 5 }, presence: true
-  validates :body, length: { minimum: 20 }, presence: true
-  validates :topic, presence: true
-  validates :user, presence: true
 
   def create_vote
     user.votes.create(post: self, value: 1)

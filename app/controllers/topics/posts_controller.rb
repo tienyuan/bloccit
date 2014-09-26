@@ -1,6 +1,10 @@
-class PostsController < ApplicationController
-  def index
-    @posts = Post.visible_to(current_user).where("posts.created_at > ?", 7.days.ago).paginate(page: params[:page], per_page: 10)
+class Topics::PostsController < ApplicationController
+
+  def show
+    @topic = Topic.find(params[:topic_id])
+    authorize @topic
+    @post = Post.find(params[:id])
+    @comments = @post.comments
   end
 
   def new
@@ -15,7 +19,8 @@ class PostsController < ApplicationController
     @post.topic = @topic
     
     authorize @post
-    if @post.save_with_initial_vote
+    if @post.save
+       @post.create_vote
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
     else

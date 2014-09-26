@@ -1,8 +1,9 @@
 require 'rails_helper'
-include TestFactories
 include Devise::TestHelpers
 
 describe Vote do
+
+  include TestFactories
 
   describe "validations" do
 
