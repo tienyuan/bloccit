@@ -3,8 +3,6 @@ include Devise::TestHelpers
 
 describe Vote do
 
-  include TestFactories
-
   describe "validations" do
 
     it "only allows 1" do
@@ -27,7 +25,7 @@ describe Vote do
 
   describe "after save" do
     it "calls `Post#update_rank` after save" do
-      post = associated_post
+      post = create(:post)
       vote = Vote.new(value: 1, post: post)
       expect(post).to receive(:update_rank)
         vote.save

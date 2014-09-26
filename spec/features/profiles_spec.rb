@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe "Visiting profiles" do
-  include TestFactories
+
   include Warden::Test::Helpers
   Warden.test_mode!
   
   before do
-    @user = authenticated_user
-    @post = associated_post(user: @user)
-    @comment = Comment.new(post: @post, user: @user, body: "A Comment")
+    @user = create(:user)
+    @post = create(:post, user: @user)
+    @comment = create(:comment, user: @user, post: @post)
     allow(@comment).to receive(:send_favorite_emails)
     @comment.save
   end
@@ -34,6 +34,10 @@ describe "Visiting profiles" do
       expect( page ).to have_content(@post.title)
       expect( page ).to have_content(@comment.body)
     end
+  end
+
+  after do
+    Warden.test_reset!
   end
 
 end
