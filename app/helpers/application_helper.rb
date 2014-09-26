@@ -15,19 +15,11 @@ module ApplicationHelper
   end
 
   def up_vote_link_classes(post)
-    if current_user.voted(post) && current_user.voted(post).up_vote?
-      'glyphicon glyphicon-chevron-up voted'
-    else
-      'glyphicon glyphicon-chevron-up'
-    end
+    'glyphicon glyphicon-chevron-up ' + (current_user.voted(post) && current_user.voted(post).up_vote? ? 'voted' : '' )
   end
 
   def down_vote_link_classes(post)
-    if current_user.voted(post) && current_user.voted(post).down_vote?
-      'glyphicon glyphicon-chevron-down voted'
-    else
-      'glyphicon glyphicon-chevron-down'
-    end
+    'glyphicon glyphicon-chevron-down ' + (current_user.voted(post) && current_user.voted(post).down_vote? ? 'voted' : '' )
   end
   
   def my_name
