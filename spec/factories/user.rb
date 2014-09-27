@@ -7,9 +7,10 @@ FactoryGirl.define do
     confirmed_at Time.now
     
     factory :user_with_post_and_comment do
+
       after(:create) do |instance|
-        association :post, user: instance
-        association :comment, user: instance
+        create_list :post, 1, user: instance
+        create_list :comment, 1, user: instance
       end
     end
   end
