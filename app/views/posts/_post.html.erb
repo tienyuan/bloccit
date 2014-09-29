@@ -8,7 +8,7 @@
           <small>
             <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
             submitted <%= time_ago_in_words(post.created_at) %> ago by 
-            <%= post.user.name %><br/>
+            <%= link_to post.user.name, post.user %><br/>
             <%= post.comments.count %> Comments
           </small>
         </div>
