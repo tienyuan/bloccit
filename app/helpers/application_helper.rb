@@ -14,12 +14,13 @@ module ApplicationHelper
     end
   end
 
-  def up_vote_link_classes(post)
-    'glyphicon glyphicon-chevron-up ' + (current_user.voted(post) && current_user.voted(post).up_vote? ? 'voted' : '' )
-  end
-
-  def down_vote_link_classes(post)
-    'glyphicon glyphicon-chevron-down ' + (current_user.voted(post) && current_user.voted(post).down_vote? ? 'voted' : '' )
+  def vote_link_classes(direction, post)
+    g = "glyphicon glyphicon-"
+    if direction == :up
+      g << "chevron-up " + (current_user.voted(post) && current_user.voted(post).up_vote? ? 'voted' : '' )
+    else
+      g << "chevron-down " + (current_user.voted(post) && current_user.voted(post).down_vote? ? 'voted' : '' )
+    end
   end
   
   def my_name

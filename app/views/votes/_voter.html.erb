@@ -3,11 +3,11 @@
   <div>
     <%= link_to " ", 
       post_up_vote_path(post), 
-      class: up_vote_link_classes(post), method: :post %></div>
+      class: vote_link_classes(:up, post), method: :post %></div>
   <div><strong><%= post.points %></strong></div>
   <div>
     <%= link_to " ", 
     post_down_vote_path(post), 
-    class: down_vote_link_classes(post), method: :post %></div>
+    class: vote_link_classes(:down, post), method: :post %></div>
 </div>
 <% end %>
