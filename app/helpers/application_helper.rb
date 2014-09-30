@@ -13,7 +13,13 @@ module ApplicationHelper
       content_tag :div, capture(&block), class: 'form-group'
     end
   end
+  
+  def my_name
+    "Tien Yuan"
+  end
 
+  private 
+  
   def vote_link_classes(direction, post)
     g = "glyphicon glyphicon-"
     if direction == :up
@@ -21,9 +27,5 @@ module ApplicationHelper
     else
       g << "chevron-down " + (current_user.voted(post) && current_user.voted(post).down_vote? ? 'voted' : '' )
     end
-  end
-  
-  def my_name
-    "Tien Yuan"
   end
 end
