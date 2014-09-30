@@ -44,4 +44,20 @@ describe User do
       expect( users.first.comments_count ).to eq(2)
     end
   end
+
+  describe "testing fancy factory" do
+    before do
+      @user3 = create(:user_with_post_and_comment)
+      @post = @user3.posts
+      @comment = @user3.comments
+    end
+
+    it "stores a `posts_count` on user" do
+      expect( @posts.size ).to eq(1)
+    end
+
+    it "stores a `comments_count` on user" do
+      expect( @comments.size ).to eq(1)
+    end
+  end
 end
